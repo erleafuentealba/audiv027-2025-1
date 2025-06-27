@@ -390,7 +390,7 @@ function setupDecor()
 
 ## enlace del proyecto
 
-Lo hicimos en editor de p5.js <https://editor.p5js.org/annais.bustamante/full/NRCjxHU75>
+Lo hicimos en editor de p5.js <https://editor.p5js.org/annais.bustamante/sketches/eAogya2kg>
 
 Código del proyecto
 ```javascript
@@ -443,7 +443,7 @@ function setup() {
   doritoX = width / 2;
   doritoY = height - 70;
 
-  video = createCapture({
+  video = createCapture({ // Iniciación handpose
     video: {
       width: 640,
       height: 480,
@@ -475,6 +475,7 @@ function draw() {
   }
 }
 
+// ------ Pantalla de inicio ------
 function drawStartScreen() {
   imageMode(CORNER);
   image(fondoinicio, 0, 0, width, height);
@@ -499,6 +500,7 @@ function drawStartScreen() {
   }
 }
 
+// ------ Pantalla del juego: funcionamiento ------
 function gameOn() {
   imageMode(CENTER);
   image(fondojuego, width / 2, height / 2, width, height);
@@ -549,6 +551,7 @@ function gameOn() {
   pop();
 }
 
+// ------ Pantalla final: game over ------
 function endScreen() {
   background(0);
   image(fondojuego, width / 2, height / 2, width, height);
@@ -571,11 +574,12 @@ function endScreen() {
   agregarChuru(1);
 }
 
-function updateFrame() {
+// Funcionamiento pantalla animada
+function updateFrame() { 
   config.offset += config.speed;
 }
 
-function displayFrame() {
+function displayFrame() { 
   let perimeter = (config.w + config.h) * 2;
   let space = perimeter / config.noBalls;
 
@@ -615,13 +619,14 @@ function pickRandom() {
   x = random(50, width - 50);
 }
 
-function keyPressed() {
+// Iniciar el juego con click/tap y volver a empezar
+function keyPressed() { 
   if (screen === 0 && (key === 'd' || key === 'D')) {
     iniciarJuego();
   }
 }
 
-function mousePressed() {
+function mousePressed() { 
   if (screen === 0) {
     iniciarJuego();
   } else if (screen === 2) {
@@ -655,7 +660,8 @@ function reset() {
   churuItems = [];
 }
 
-function agregarChuru(num) {
+// Funcionamiento lluvia de churu final
+function agregarChuru(num) { 
   for (let count = 0; count < num; count++) {
     let item = new Churu(random(width), -10 + random(20), random(0.5, 3));
     churuItems.push(item);
